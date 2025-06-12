@@ -22,7 +22,7 @@ def add(request, project_id):
 
         if name:
             todolist = Todolist.objects.create(name=name, description=description, created_by=request.user, project_id=project_id)
-            return redirect(f'/projects/{project_id}/{todolist.id}')
+            return redirect(f'/projects/{project_id}/')
         else:
             print('Not valid')
     return render(request, 'todolist/add.html')
@@ -43,3 +43,12 @@ def edit(request, project_id, pk):
             return redirect(f'/projects/{project_id}/{pk}')
 
     return render(request, 'todolist/edit.html', {'project': project, 'todolist': todolist})
+
+
+@login_required
+def delete(request, project_id, pk):
+    project = Project.objects.filter(created_by=request.user).get(pk=project_id)
+    todolist = Todolist.objects.filter(project=project).get(pk=pk)
+    todolist.delete()
+
+    return redirect(f'/projects/{project_id}/')
