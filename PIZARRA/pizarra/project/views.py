@@ -42,7 +42,7 @@ def edit(request, pk):
             project.description = description
             project.save()
 
-            return redirect('/projects/')
+            return redirect(f'/projects/{pk}/')
         
     return render(request, 'project/edit.html', {'project': project})
 
