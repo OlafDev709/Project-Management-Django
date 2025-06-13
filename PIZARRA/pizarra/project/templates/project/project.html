@@ -12,6 +12,8 @@
     <a href="{% url 'project:edit' project.id %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Edit</a>
     <a href="{% url 'project:delete' project.id %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Delete</a>
 
+    <h2 class="mt-6 text-2xl">Todolists</h2>
+
     <div class="mt-6 grid grid-cols-4 gap-4">
         {% for todolist in project.todolists.all %}
         <div class="py-6 px-6 bg-slate-200">
@@ -23,5 +25,18 @@
         </div>
         {% endfor %}
     </div>
+
+    <h2 class="mt-6 text-2xl">Files</h2>
+    {% for projectfile in project.files.all %}
+        <div class="py-6 px-6 bg-slate-200">
+                <h2 class="mb-4 text-xl">{{ projectfile.name }}</h2>
+                <a href="{{ projectfile.attachment.url }}" target="_blank" class="text-blue-600 hover:underline">
+                    <p class="text-sm text-slate-600">Download file</p>
+                </a>
+                
+        </div>
+    {% empty %}
+        <p>No files uploaded yet.</p>
+    {% endfor %}
 
 {% endblock %}
