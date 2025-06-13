@@ -75,3 +75,10 @@ def upload_file(request, pk):
         'project': project,
         'form': form
     })
+
+@login_required
+def delete_file(request, pk, file_pk):
+    project = Project.objects.filter(created_by=request.user).get(pk=pk)
+    projectfile = ProjectFile.objects.get(pk=file_pk)
+    projectfile.delete()
+    return redirect(f'/projects/{pk}/')

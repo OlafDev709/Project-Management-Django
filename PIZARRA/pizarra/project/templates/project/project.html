@@ -33,6 +33,9 @@
                 <a href="{{ projectfile.attachment.url }}" target="_blank" class="text-blue-600 hover:underline">
                     <p class="text-sm text-slate-600">Download file</p>
                 </a>
+                <a href="{% url 'project:delete' project.id projectfile.id %}" class="text-blue-600 hover:underline">
+                    <p class="text-sm text-slate-600">Delete file</p>
+                </a>
                 
         </div>
     {% empty %}
