@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-    <h1 class="mb-6 text-3xl">{{ todolist.name }}</h1>
+    <h1 class="mb-6 text-3xl">Todolist: {{ todolist.name }}</h1>
 
     {% if todolist.description %}
         <p>{{todolist.description}}</p>
