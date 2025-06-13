@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1 class="text-3xl text-black">Upload file to "{{ project.name }}"</h1>
+
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="py-4 px-8 bg-sky-600 text-white">Upload</button>
+    </form>
+{% endblock %}
+

@@ -11,3 +11,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+    
+class ProjectFile(models.Model):
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
+    name = models.CharField(max_length=255)
+    attachment = models.FileField(upload_to='projectfiles')
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='files')
+
+    def __str__(self):
+        return self.name
